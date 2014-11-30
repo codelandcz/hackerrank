@@ -6,9 +6,10 @@ import java.io.*;
  * <h2>Output</h2>
  * <h2>Example</h2>
  * <h2>Algorithm explanation</h2>
+ * Solve2 runs slower than Solve (0.1s vs 0.09s).
  *
  * @author codelandcz
- * @version 1.0
+ * @version 2.0
  * @see <a href="https://www.hackerrank.com/challenges/find-digits">Find Digits</a>
  */
 public class Main
@@ -28,7 +29,6 @@ public class Main
     out.close();
   }
 
-  //TODO Comparison with iteration over chars
   public static String solve(String line)
   {
     int count = 0;
@@ -43,6 +43,23 @@ public class Main
         count++;
       }
       x /= 10;
+    }
+
+    return Integer.toString(count);
+  }
+
+  public static String solve2(String line)
+  {
+    int count = 0;
+    int x;
+    int num;
+
+    num = Integer.parseInt(line);
+    for (int i = 0; i < line.length(); i++) {
+      x = Character.getNumericValue(line.charAt(i));
+      if (x > 0 && num % x == 0) {
+        count++;
+      }
     }
 
     return Integer.toString(count);
