@@ -79,7 +79,6 @@ public class Main
     int height;
     int x;
     int i;
-    int j;
 
     x = Integer.parseInt(line);
 
