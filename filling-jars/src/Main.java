@@ -9,7 +9,7 @@ import java.io.*;
  * <h2>Algorithm explanation</h2>
  *
  * @author codelandcz
- * @version 1.0
+ * @version 1.1
  * @see <a href="https://www.hackerrank.com/challenges/filling-jars">Filling Jars</a>
  */
 public class Main
@@ -34,12 +34,12 @@ public class Main
 
   public static String solve(String[] lines, int N)
   {
-    int average = 0;
+    long average = 0;
     for (String line : lines) {
       String[] tmp = line.split(" ");
-      average += ((Integer.parseInt(tmp[1]) - Integer.parseInt(tmp[0])) + 1) * Integer.parseInt(tmp[2]);
+      average += ((Long.parseLong(tmp[1]) - Long.parseLong(tmp[0])) + 1) * Long.parseLong(tmp[2]);
     }
 
-    return Integer.toString(average / N);
+    return Long.toString(average / N);
   }
 }
