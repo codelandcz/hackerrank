@@ -86,7 +86,7 @@ public class Main
     if (x == 1) return "2";
     i = x / 2;
     i += x % 2;
-    height = (int) Math.pow(2, i) + (int) Math.pow(2, i) - 1 - (x % 2);
+    height = (2 * (int) Math.pow(2, i)) - 1 - (x % 2);
 
     return Integer.toString(height);
   }
