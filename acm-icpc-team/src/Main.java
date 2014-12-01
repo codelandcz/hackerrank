@@ -1,5 +1,4 @@
 import java.io.*;
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +10,7 @@ import java.util.ArrayList;
  * <h2>Algorithm explanation</h2>
  *
  * @author codelandcz
- * @version 1.0
+ * @version 1.1
  * @see <a href="https://www.hackerrank.com/challenges/acm-icpc-team">ACM ICPC Team</a>
  */
 public class Main
@@ -24,16 +23,16 @@ public class Main
     String[] definitions = in.readLine().split(" ");
     int N = Integer.parseInt(definitions[0]);
 
-    ArrayList<Attendant> attendants = new ArrayList<>(N);
+    ArrayList<String> attendants = new ArrayList<>(N);
     for (int i = 0; i < N; i++) {
-      attendants.add(new Attendant(in.readLine()));
+      attendants.add(in.readLine());
     }
     out.write(solve(attendants));
 
     out.close();
   }
 
-  public static String solve(ArrayList<Attendant> attendants)
+  public static String solve(ArrayList<String> attendants)
   {
     StringBuilder sb = new StringBuilder();
     int pairKnowledge;
@@ -58,33 +57,15 @@ public class Main
     return sb.toString();
   }
 
-  private static int countPairKnowledge(Attendant attendant1, Attendant attendant2)
+  private static int countPairKnowledge(String attendant1, String attendant2)
   {
     int count = 0;
-    char[] att1 = attendant1.strKnowledge.toCharArray();
-    char[] att2 = attendant2.strKnowledge.toCharArray();
+    char[] att1 = attendant1.toCharArray();
+    char[] att2 = attendant2.toCharArray();
     for (int i = 0; i < att1.length; i++) {
       count += (att1[i] - '0') | (att2[i] - '0');
     }
 
     return count;
-  }
-}
-
-class Attendant
-{
-  public final String     strKnowledge;
-  public final BigInteger knowledge;
-
-  Attendant(String knowledge)
-  {
-    this.strKnowledge = knowledge;
-    this.knowledge = new BigInteger(knowledge, 2);
-  }
-
-  @Override
-  public String toString()
-  {
-    return this.knowledge.toString();
   }
 }
