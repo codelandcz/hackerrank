@@ -9,7 +9,7 @@ import java.io.*;
  * <h2>Algorithm explanation</h2>
  *
  * @author codelandcz
- * @version 1.0
+ * @version 1.1
  * @see <a href="https://www.hackerrank.com/challenges/chocolate-feast">Chocolate Feast</a>
  */
 public class Main
@@ -32,25 +32,24 @@ public class Main
   public static String solve(String line)
   {
     String[] inputs = line.split(" ");
-    int totalChocolates = 0;
     int money = Integer.parseInt(inputs[0]);
     int price = Integer.parseInt(inputs[1]);
-    int wrappers = Integer.parseInt(inputs[2]);
-    int chocolates;
-    int reminders;
-    int extra;
+    int exchange = Integer.parseInt(inputs[2]);
 
-    chocolates = money / price;
-    reminders = chocolates % wrappers;
-    extra = chocolates / wrappers;
-    totalChocolates += chocolates + extra;
+    int totalChocolates = 0;
 
-    while (extra + reminders >= wrappers) {
-      chocolates = (extra + reminders) / wrappers;
-      reminders = chocolates % wrappers;
-      extra = chocolates / wrappers;
-      totalChocolates += chocolates + extra;
+    int wrappers = money / price;
+    int reminders = 0;
+    int tmp = wrappers + reminders;
+
+    while (tmp >= exchange) {
+      totalChocolates += wrappers;
+      wrappers = tmp / exchange;
+      reminders = tmp % exchange;
+
+      tmp = wrappers + reminders;
     }
+    totalChocolates += wrappers;
 
     return Integer.toString(totalChocolates);
   }
