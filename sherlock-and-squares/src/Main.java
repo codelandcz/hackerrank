@@ -10,7 +10,8 @@ import java.io.*;
  *
  * @author codelandcz
  * @version 1.0
- * @see <a href=""></a>
+ * @see <a href="https://www.hackerrank.com/challenges/sherlock-and-squares">Sherlock and Squares</a>
+ * @see <a href="http://stackoverflow.com/questions/295579/fastest-way-to-determine-if-an-integers-square-root-is-an-integer">SO</a>
  */
 public class Main
 {
@@ -31,9 +32,19 @@ public class Main
 
   public static String solve(String line)
   {
-    StringBuilder sb = new StringBuilder();
+    int count = 0;
+    String[] boundaries = line.split(" ");
 
+    for (long i = Long.parseLong(boundaries[0]); i <= Long.parseLong(boundaries[1]); i++) {
+      if (isSquare(i)) count++;
+    }
 
-    return sb.toString();
+    return Integer.toString(count);
+  }
+
+  public static boolean isSquare(long n)
+  {
+    long tst = (long) Math.sqrt(n);
+    return tst * tst == n;
   }
 }
