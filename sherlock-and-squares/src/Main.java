@@ -9,7 +9,7 @@ import java.io.*;
  * <h2>Algorithm explanation</h2>
  *
  * @author codelandcz
- * @version 1.0
+ * @version 1.2
  * @see <a href="https://www.hackerrank.com/challenges/sherlock-and-squares">Sherlock and Squares</a>
  * @see <a href="http://stackoverflow.com/questions/295579/fastest-way-to-determine-if-an-integers-square-root-is-an-integer">SO</a>
  */
@@ -38,32 +38,12 @@ public class Main
 
   public static String solve(String line)
   {
-    int count = 0;
     String[] boundaries = line.split(" ");
+    long a = Long.parseLong(boundaries[0]);
+    long b = Long.parseLong(boundaries[1]);
 
-    for (long i = Long.parseLong(boundaries[0]); i <= Long.parseLong(boundaries[1]); i++) {
-      if (isSquare(i)) count++;
-    }
+    long count = ((long) Math.sqrt(b)) - (long) (Math.ceil(Math.sqrt(a))) + 1;
 
-    return Integer.toString(count);
-  }
-
-  public static boolean isSquare(long x)
-  {
-    // This tests if the 6 least significant bits are right.
-    // Moving the to be tested bit to the highest position saves us masking.
-    if (goodMask << x >= 0) return false;
-    final int numberOfTrailingZeros = Long.numberOfTrailingZeros(x);
-    // Each square ends with an even number of zeros.
-    if ((numberOfTrailingZeros & 1) != 0) return false;
-    x >>= numberOfTrailingZeros;
-    // Now x is either 0 or odd.
-    // In binary each odd square ends with 001.
-    // Postpone the sign test until now; handle zero in the branch.
-    if ((x & 7) != 1 | x <= 0) return x == 0;
-    // Do it in the classical way.
-    // The correctness is not trivial as the conversion from long to double is lossy!
-    final long tst = (long) Math.sqrt(x);
-    return tst * tst == x;
+    return Long.toString(count);
   }
 }
